@@ -34,7 +34,15 @@ def get_services():
 svc = get_services()
 STATUS_ICON = {"started": ":material/hourglass_top:", "ok": ":material/check_circle:", "warning": ":material/warning:", "error": ":material/error:", "skipped": ":material/skip_next:"}
 DECISION_ICON = {"APPROVED": ":material/verified:", "PENDING": ":material/pending:", "REJECTED": ":material/block:"}
-PAGES = ["Dashboard", "New submission", "Live run", "Review queue", "Application details"]
+REVIEWER_PAGES = ["Dashboard", "Live run", "Review queue", "Application details"]
+VENDOR_PAGES = ["New submission"]
+NAV_LABELS = {
+    "Dashboard": ":material/dashboard:  Dashboard",
+    "New submission": ":material/person_add:  Submit vendor",
+    "Live run": ":material/play_circle:  Run processing",
+    "Review queue": ":material/fact_check:  Review queue",
+    "Application details": ":material/folder_open:  Application details",
+}
 
 
 def safe_frame(rows: Iterable[Dict[str, Any]], columns: Optional[List[str]] = None) -> pd.DataFrame:
@@ -58,6 +66,14 @@ def select_application(application_id: str) -> None:
 def open_application_details() -> None:
     """Navigate via a widget callback, before Streamlit instantiates the sidebar radio."""
     st.session_state["workspace_nav"] = "Application details"
+
+
+def sync_navigation_for_role() -> None:
+    """Keep the selected workspace page valid when the demo role is changed."""
+    role = st.session_state.get("workspace_role", "Reviewer")
+    allowed = VENDOR_PAGES if role == "Vendor" else REVIEWER_PAGES
+    if st.session_state.get("workspace_nav") not in allowed:
+        st.session_state["workspace_nav"] = allowed[0]
 
 
 def clear_demo_data() -> None:
@@ -432,16 +448,43 @@ def render_details() -> None:
         st.download_button("Download audit CSV", pd.DataFrame(history).to_csv(index=False).encode("utf-8"), file_name=f"{app_id}_audit.csv", mime="text/csv")
 
 
+st.markdown("""
+<style>
+[data-testid="stSidebar"] [data-testid="stSidebarContent"] { padding-top: 1.4rem; }
+[data-testid="stSidebar"] h1 { margin-bottom: 0.05rem; }
+[data-testid="stSidebar"] div[role="radiogroup"] > label {
+    border-radius: 0.55rem;
+    margin: 0.15rem 0;
+    padding: 0.42rem 0.5rem;
+    transition: background-color 120ms ease;
+}
+[data-testid="stSidebar"] div[role="radiogroup"] > label:hover { background: rgba(255, 255, 255, 0.06); }
+[data-testid="stSidebar"] div[role="radiogroup"] > label:has(input:checked) {
+    background: rgba(255, 75, 75, 0.16);
+    font-weight: 650;
+}
+.sidebar-subtitle { color: #a6a6b0; font-size: 0.92rem; margin: -0.3rem 0 1.75rem; }
+.sidebar-status-title { color: #a6a6b0; font-size: 0.82rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+</style>
+""", unsafe_allow_html=True)
+
+
 with st.sidebar:
     st.title("VendorFlow AI")
-    page = st.radio("Workspace", PAGES, key="workspace_nav")
-    if page not in PAGES: page = "Dashboard"  # compatible with the project's lightweight Streamlit test double
+    st.markdown("<div class='sidebar-subtitle'>AI-assisted, policy-led</div>", unsafe_allow_html=True)
+    role = st.selectbox("Role", ["Reviewer", "Vendor"], key="workspace_role", on_change=sync_navigation_for_role)
+    st.caption("WORKSPACE")
+    allowed_pages = VENDOR_PAGES if role == "Vendor" else REVIEWER_PAGES
+    page = st.radio("Workspace navigation", allowed_pages, key="workspace_nav", format_func=lambda item: NAV_LABELS[item], label_visibility="collapsed")
+    if page not in allowed_pages: page = allowed_pages[0]  # compatible with the project's lightweight Streamlit test double
     st.divider()
-    st.caption("Deterministic decision policy; AI only assists document reading.")
-    st.write(f"**Mode:** {svc.settings.app_mode}")
-    st.write(f"**Database:** `{svc.settings.db_path.name}`")
-    if not svc.router.has_providers(): st.info("Regex-only extraction: no LLM provider configured.")
-    st.caption("Simulated verification is labelled and never presented as live evidence.")
+    with st.expander("System status", expanded=False):
+        st.markdown("<div class='sidebar-status-title'>Decision mode</div>", unsafe_allow_html=True)
+        st.write(f"**{svc.settings.app_mode}**")
+        st.caption("AI reads documents. Policy rules make decisions.")
+        if not svc.router.has_providers():
+            st.info("No LLM is configured. Text-only extraction is active.")
+        st.caption("Simulated verification is always labelled.")
 
 if page == "Dashboard": render_dashboard()
 elif page == "New submission": render_new_submission()
