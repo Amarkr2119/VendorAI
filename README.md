@@ -5,8 +5,8 @@ AI-assisted vendor onboarding for India, USA and UK (Zamp case study PS-2). Pyth
 **Status: Phase 5 UI complete.** `app.py` is now a five-screen Streamlit workspace over the Phase 3/4 backend: dashboard,
 new submission, live pipeline run, human-review queue, and application details/audit history.
 
-Principles: LLMs only *read* documents; deterministic Python makes every decision. The app works with no LLM and no
-external API. Simulated verification is never presented as real.
+Principles: AI only *reads* documents; deterministic Python makes every decision. Text-based PDFs work without an
+external API; scanned documents use Gemini OCR. Simulated verification is never presented as real.
 
 ## Setup
 
@@ -15,16 +15,12 @@ external API. Simulated verification is never presented as real.
 git clone <your repo> && cd vendorflow
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-brew install tesseract                 # OCR engine for scanned documents
-cp .env.example .env                   # then edit .env (keys are optional)
+cp .env.example .env                   # add a Gemini API key and model for scanned-document OCR
 ```
 
-### Linux (Debian/Ubuntu) and Streamlit Community Cloud
-`sudo apt install tesseract-ocr` (on Streamlit Community Cloud the `packages.txt` file installs it automatically).
-
-### Windows
-Install Tesseract from the UB-Mannheim installer and add it to PATH, or use the pure-pip alternative:
-`pip install rapidocr-onnxruntime` and set `OCR_ENGINE=rapidocr`.
+Scanned documents use Gemini image OCR (`OCR_ENGINE=gemini`). No Tesseract, RapidOCR, or other local OCR installation is required.
+Text-based PDFs still extract locally without an API call. If Gemini is unavailable, a scanned document is safely marked unreadable
+rather than guessed.
 
 ## Run
 
@@ -32,7 +28,7 @@ Install Tesseract from the UB-Mannheim installer and add it to PATH, or use the 
 python scripts/init_db.py                 # create SQLite database and all tables (idempotent)
 python scripts/generate_dataset.py        # regenerate the synthetic dataset (deterministic; already included)
 python scripts/seed_db.py                 # register the 29 synthetic applications (inputs only)
-python scripts/process_all.py --no-llm    # process all of them with deterministic extraction (works offline)
+python scripts/process_all.py --no-llm    # process text-based PDFs only; scans require Gemini OCR
 python scripts/report_extraction.py       # score extraction against ground truth -> data/extraction_report.csv
 streamlit run app.py                      # full vendor-onboarding workspace
 pytest -v                                 # or: python -m unittest discover -s tests -t . -v
@@ -51,7 +47,7 @@ python scripts/check_llm.py --fallback-test        # invalid Gemini key on purpo
 python scripts/process_all.py --only IN-001 IN-009 # full pipeline with the LLM
 ```
 
-These live paths were only tested with stubs in the build environment. Model names are never hardcoded: Google's lineup changes
+These live paths were only tested with stubs in the build environment. Gemini is also used for scanned-document OCR. Model names are never hardcoded: Google's lineup changes
 quickly, so you choose from the list your key can use. Free-tier Gemini content may be used by Google to improve its products:
 send only synthetic data.
 
@@ -143,8 +139,8 @@ See `docs/PHASE4_REPORT.md` for the actual results and what is mocked vs real.
 - **Confidence is computed deterministically** from grounding, extractor agreement, format validity, source quality and agreement
   with the submitted form. The LLM's self-reported confidence is never used.
 - **EIN prefix list** (`ein_prefix_known`) is a commonly published list; verify against current IRS guidance before relying on it.
-- **OCR results vary slightly between Tesseract versions.** The poor-quality scan scenarios are designed so that the outcome is
-  either a correct value or a value flagged LOW; tests assert that property, not exact OCR output.
+- **Gemini OCR is a cloud service.** It returns transcription text but no calibrated word-level confidence, so the application
+  uses a conservative page confidence and still applies its deterministic validation rules.
 - **Storage:** raw bank account numbers are stored in the submission payload because verification needs them; they are masked in
   logs, audit tables and the UI. A production system would add field-level encryption.
 - **Reviewer identity** (Phase 4) is a self-declared name, not authentication.

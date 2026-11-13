@@ -1,6 +1,6 @@
 # Phase 3 test report (backend foundation and document processing)
 
-Environment: Python 3.12.3, Tesseract 5.3.4, pypdfium2 PDF backend, no network.
+Environment: Python 3.12.3, pypdfium2 PDF backend, no network. The current application uses Gemini image OCR for scanned documents.
 
 ## Test run
 `python -m unittest discover -s tests -t . -v` -> **96 tests, OK, 2 skipped** (41.7 s).

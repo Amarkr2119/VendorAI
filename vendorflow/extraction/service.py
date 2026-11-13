@@ -69,7 +69,7 @@ class ExtractionService:
                  ocr: Any = _UNSET, backend: Any = None):
         self.repo, self.settings, self.router = repo, settings, router
         self.backend = backend or pdf_text.get_backend(settings.pdf_backend)
-        self.ocr = get_ocr_engine(settings.ocr_engine) if ocr is _UNSET else ocr
+        self.ocr = get_ocr_engine(settings) if ocr is _UNSET else ocr
 
     # ------------------------------------------------------------------ public
     def process_document(self, run_id: int, application_id: str, country: str, doc: Mapping[str, Any],

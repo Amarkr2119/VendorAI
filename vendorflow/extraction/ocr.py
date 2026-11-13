@@ -1,43 +1,44 @@
-"""OCR engines. Tesseract preferred; RapidOCR as an optional pip-only alternative; or none.
+"""Gemini-based OCR for scanned document pages.
 
-An engine returns text plus per-word confidences (0..1) so downstream confidence scoring can use
-the quality of the specific words that make up an extracted value.
+There is intentionally no local OCR dependency in this module. A scanned page
+is sent to Gemini as an image and Gemini returns the visible text. Gemini does
+not expose word-level OCR confidence, so the result is assigned a conservative
+page confidence rather than inventing precise per-word scores.
 """
 from __future__ import annotations
 
-import csv
 import io
-import subprocess
 from dataclasses import dataclass, field
-from pathlib import Path
-from shutil import which
-from typing import List, Optional, Protocol, Tuple
+from typing import List, Optional, Protocol, Tuple, Union
 
-from PIL import Image, ImageOps
+from PIL import Image
 
+from vendorflow.config import Settings, load_settings
+from vendorflow.llm.base import LlmError
+from vendorflow.llm.gemini_client import GeminiClient
 from vendorflow.utils.text_normalize import alnum_lower
 
 
 @dataclass
 class OcrResult:
     text: str
-    words: List[Tuple[str, float]] = field(default_factory=list)       # (word, confidence 0..1)
+    words: List[Tuple[str, float]] = field(default_factory=list)
     mean_conf: float = 0.0
     engine: str = ""
 
     def confidence_for(self, value: str) -> float:
-        """Mean OCR confidence of the words that make up `value`; falls back to a penalized page mean."""
-        toks = [alnum_lower(t) for t in value.split() if alnum_lower(t)]
-        if not toks:
+        """Return matching word confidence, or a conservative page confidence."""
+        tokens = [alnum_lower(token) for token in value.split() if alnum_lower(token)]
+        if not tokens:
             return self.mean_conf
-        confs = []
-        for t in toks:
-            hits = [c for w, c in self.words if alnum_lower(w) == t]
+        confidences = []
+        for token in tokens:
+            hits = [confidence for word, confidence in self.words if alnum_lower(word) == token]
             if hits:
-                confs.append(sum(hits) / len(hits))
-        if len(confs) < len(toks):                       # some tokens were not found as standalone OCR words
-            confs.append(self.mean_conf * 0.75)
-        return sum(confs) / len(confs)
+                confidences.append(sum(hits) / len(hits))
+        if len(confidences) < len(tokens):
+            confidences.append(self.mean_conf * 0.75)
+        return sum(confidences) / len(confidences)
 
 
 class OcrEngine(Protocol):
@@ -47,128 +48,57 @@ class OcrEngine(Protocol):
 
 
 class OcrUnavailable(RuntimeError):
-    pass
+    """Raised when Gemini OCR cannot be used."""
 
 
-class TesseractEngine:
-    name = "tesseract"
+class GeminiOcrEngine:
+    """Read a document image using Gemini's multimodal ``generateContent`` API."""
 
-    def __init__(self):
-        # Resolve the binary first.  The direct command-line fallback below
-        # keeps OCR usable when Streamlit's Python environment has Tesseract
-        # installed but does not include the optional pytesseract package.
-        executable = which("tesseract")
-        if not executable:
-            executable = next((str(path) for path in (
-                Path("/opt/homebrew/bin/tesseract"),
-                Path("/usr/local/bin/tesseract"),
-            ) if path.is_file()), None)
-        if not executable:
-            raise OcrUnavailable("Tesseract binary was not found")
-        self._command = executable
-        self._t = None
-        try:
-            import pytesseract
-            # Desktop-launched Python processes do not always inherit Homebrew's
-            # bin directory.  Prefer PATH, then support the two conventional
-            # Homebrew locations so OCR behaves the same from a shell and
-            # Streamlit/IDE launchers.
-            pytesseract.pytesseract.tesseract_cmd = executable
-            pytesseract.get_tesseract_version()          # raises if the binary is missing
-            self._t = pytesseract
-        except Exception as e:
-            # Verify that the discovered executable works before accepting the
-            # CLI fallback.  Do not mark valid scanned documents unreadable
-            # merely because a Python wrapper is absent.
-            try:
-                subprocess.run([self._command, "--version"], check=True, capture_output=True, text=True, timeout=5)
-            except Exception as command_error:
-                raise OcrUnavailable(f"Tesseract not available: {command_error}") from e
+    name = "gemini"
+    # Gemini does not return calibrated word-level OCR confidence. Keep this
+    # below text-layer certainty but above the default 0.60 quality threshold.
+    page_confidence = 0.75
+    _PROMPT = (
+        "You are an OCR engine. Transcribe all visible text in this document image exactly as written. "
+        "Preserve labels, values, line breaks, punctuation, and identifier characters. "
+        "Do not summarize, explain, correct, infer missing characters, or add markdown."
+    )
 
-    @staticmethod
-    def _prep(img: Image.Image) -> Image.Image:
-        img = img.convert("L")
-        if img.width < 1600:                              # small scans OCR much better when upscaled
-            f = 1600 / img.width
-            img = img.resize((int(img.width * f), int(img.height * f)), Image.LANCZOS)
-        return ImageOps.autocontrast(img, cutoff=1)
+    def __init__(self, settings: Settings, client: Optional[GeminiClient] = None):
+        if not settings.provider_configured("gemini"):
+            raise OcrUnavailable("Gemini OCR requires GEMINI_API_KEY and GEMINI_MODEL")
+        self.settings = settings
+        self.client = client or GeminiClient(settings.gemini_api_key, settings.gemini_model)
 
     def recognize(self, img: Image.Image) -> OcrResult:
-        if self._t is None:
-            return self._recognize_cli(img)
-        d = self._t.image_to_data(self._prep(img), output_type=self._t.Output.DICT, config="--psm 6")
-        lines: dict = {}
-        words: List[Tuple[str, float]] = []
-        for i, txt in enumerate(d["text"]):
-            conf = float(d["conf"][i])
-            txt = (txt or "").strip()
-            if not txt or conf < 0:
-                continue
-            key = (d["block_num"][i], d["par_num"][i], d["line_num"][i])
-            lines.setdefault(key, []).append(txt)
-            words.append((txt, conf / 100.0))
-        text = "\n".join(" ".join(ws) for _, ws in sorted(lines.items()))
-        mean = sum(c for _, c in words) / len(words) if words else 0.0
-        return OcrResult(text, words, mean, self.name)
-
-    def _recognize_cli(self, img: Image.Image) -> OcrResult:
-        """OCR through the installed Tesseract CLI when pytesseract is absent."""
         payload = io.BytesIO()
-        self._prep(img).save(payload, format="PNG")
+        img.convert("RGB").save(payload, format="PNG", optimize=True)
         try:
-            completed = subprocess.run(
-                [self._command, "stdin", "stdout", "--psm", "6", "tsv"], input=payload.getvalue(),
-                check=True, capture_output=True, timeout=60,
+            response = self.client.generate_text_from_image(
+                self._PROMPT, payload.getvalue(), "image/png", self.settings.llm_timeout_s
             )
-        except (OSError, subprocess.SubprocessError) as e:
-            raise OcrUnavailable(f"Tesseract OCR failed: {e}") from e
-        lines: dict = {}
-        words: List[Tuple[str, float]] = []
-        for row in csv.DictReader(io.StringIO(completed.stdout.decode("utf-8", errors="replace")), delimiter="\t"):
-            txt = (row.get("text") or "").strip()
-            try:
-                conf = float(row.get("conf", "-1"))
-            except ValueError:
-                conf = -1.0
-            if not txt or conf < 0:
-                continue
-            key = (row.get("block_num", ""), row.get("par_num", ""), row.get("line_num", ""))
-            lines.setdefault(key, []).append(txt)
-            words.append((txt, conf / 100.0))
-        text = "\n".join(" ".join(ws) for _, ws in sorted(lines.items()))
-        mean = sum(c for _, c in words) / len(words) if words else 0.0
-        return OcrResult(text, words, mean, self.name)
+        except LlmError as exc:
+            raise OcrUnavailable(f"Gemini OCR failed: {exc}") from exc
+        text = response.text.strip()
+        if not text:
+            raise OcrUnavailable("Gemini OCR returned no readable text")
+        words = [(word, self.page_confidence) for word in text.split()]
+        return OcrResult(text, words, self.page_confidence, self.name)
 
 
-class RapidOcrEngine:
-    """Optional pure-pip alternative (`pip install rapidocr-onnxruntime`). Not exercised by the sandbox tests."""
-    name = "rapidocr"
+def get_ocr_engine(config: Union[Settings, str, None] = None) -> Optional[OcrEngine]:
+    """Return Gemini OCR when configured; never fall back to a local OCR engine.
 
-    def __init__(self):
-        try:
-            from rapidocr_onnxruntime import RapidOCR
-        except ImportError as e:
-            raise OcrUnavailable("rapidocr-onnxruntime is not installed") from e
-        self._engine = RapidOCR()
-
-    def recognize(self, img: Image.Image) -> OcrResult:
-        import numpy as np
-        result, _ = self._engine(np.asarray(img.convert("RGB")))
-        items = sorted(result or [], key=lambda r: (round(r[0][0][1] / 12), r[0][0][0]))   # (line bucket, x)
-        words = [(r[1], float(r[2])) for r in items]
-        text = "\n".join(r[1] for r in items)
-        mean = sum(c for _, c in words) / len(words) if words else 0.0
-        return OcrResult(text, words, mean, self.name)
-
-
-def get_ocr_engine(setting: str = "auto") -> Optional[OcrEngine]:
-    """Return an engine, or None when OCR is disabled/unavailable (scanned docs are then flagged, never guessed)."""
-    if setting == "none":
+    ``str`` is still accepted for older callers. Only ``gemini`` and ``auto``
+    can create an engine; ``none`` and retired local engine names return None.
+    """
+    if isinstance(config, Settings):
+        settings, setting = config, config.ocr_engine
+    else:
+        settings, setting = load_settings(), (config or "gemini")
+    if setting.lower() not in {"auto", "gemini"}:
         return None
-    order = {"tesseract": [TesseractEngine], "rapidocr": [RapidOcrEngine]}.get(setting, [TesseractEngine, RapidOcrEngine])
-    for cls in order:
-        try:
-            return cls()
-        except OcrUnavailable:
-            continue
-    return None
+    try:
+        return GeminiOcrEngine(settings)
+    except OcrUnavailable:
+        return None

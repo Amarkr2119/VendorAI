@@ -55,7 +55,7 @@ class Settings:
     groq_model: str = ""
 
     pdf_backend: str = "auto"
-    ocr_engine: str = "auto"
+    ocr_engine: str = "gemini"            # gemini | none
     ocr_min_confidence: float = 0.60
 
     # ---- Phase 4: verification
@@ -104,7 +104,7 @@ class Settings:
             groq_api_key=_clean(e.get("GROQ_API_KEY")),
             groq_model=_clean(e.get("GROQ_MODEL")),
             pdf_backend=(_clean(e.get("PDF_BACKEND")) or "auto").lower(),
-            ocr_engine=(_clean(e.get("OCR_ENGINE")) or "auto").lower(),
+            ocr_engine=(_clean(e.get("OCR_ENGINE")) or "gemini").lower(),
             ocr_min_confidence=_num(_clean(e.get("OCR_MIN_CONFIDENCE")), 0.60),
             verification_providers=(_clean(e.get("VERIFICATION_PROVIDERS")) or "auto").lower(),
             verify_timeout_s=_num(_clean(e.get("VERIFY_TIMEOUT_S")), 10.0),

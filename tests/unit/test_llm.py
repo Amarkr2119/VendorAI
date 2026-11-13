@@ -189,6 +189,18 @@ class TestRestClients(unittest.TestCase):
         self.assertEqual(kw["json"]["generationConfig"]["responseMimeType"], "application/json")
         self.assertEqual(kw["json"]["generationConfig"]["temperature"], 0)
 
+    def test_gemini_image_ocr_sends_image_inline_and_key_only_in_header(self):
+        body = {"candidates": [{"content": {"parts": [{"text": "GSTIN: 27ABCDE1234F1Z5"}]}}]}
+        session = FakeSession(FakeResp(200, body))
+        response = GeminiClient("SECRETKEY", "gm", session).generate_text_from_image("transcribe", b"png-bytes", "image/png", 5)
+        self.assertEqual(response.text, "GSTIN: 27ABCDE1234F1Z5")
+        url, kwargs = session.last
+        self.assertNotIn("SECRETKEY", url)
+        self.assertEqual(kwargs["headers"]["x-goog-api-key"], "SECRETKEY")
+        part = kwargs["json"]["contents"][0]["parts"][1]["inline_data"]
+        self.assertEqual(part["mime_type"], "image/png")
+        self.assertEqual(part["data"], "cG5nLWJ5dGVz")
+
     def test_gemini_error_mapping(self):
         cases = [(429, "RESOURCE_EXHAUSTED", LlmErrorKind.QUOTA), (400, "API key not valid. Please pass a valid API key", LlmErrorKind.AUTH),
                  (400, "bad schema", LlmErrorKind.BAD_REQUEST), (403, "denied", LlmErrorKind.AUTH), (404, "model not found", LlmErrorKind.CONFIG),
