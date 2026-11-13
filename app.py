@@ -264,11 +264,18 @@ def render_new_submission() -> None:
     input_type = st.radio("Input method", ["Form submission", "JSON submission", "PDF registration form"], horizontal=True)
     if input_type == "JSON submission":
         upload = st.file_uploader("Vendor submission JSON", type=["json"])
+        st.caption("Upload the company details as JSON, then attach the supporting documents below.")
+        documents = document_inputs()
         if st.button("Register and process", type="primary", key="json_register"):
             if upload is None: st.error("Upload a JSON submission first.")
             else:
                 try:
-                    show_run(register_application(svc.repo, svc.settings, submission_from_json(upload.getvalue().decode("utf-8")), created_by="vendor"))
+                    submission = submission_from_json(upload.getvalue().decode("utf-8"))
+                    # JSON supplies the typed submission fields. Browser uploads
+                    # provide the evidence files, which cannot be referenced by
+                    # a local path from a cloud-hosted browser session.
+                    submission.documents.extend(documents)
+                    show_run(register_application(svc.repo, svc.settings, submission, created_by="vendor"))
                 except (ValueError, UnicodeDecodeError) as exc: st.error(str(exc))
         return
     if input_type == "PDF registration form":
