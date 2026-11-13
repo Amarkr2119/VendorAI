@@ -1,0 +1,320 @@
+{
+  "_comment": "SIMULATED provider data. Used only by simulated adapters; never real verification.",
+  "IN": {
+    "gstin": {
+      "27JUFCK9755F1ZR": {
+        "legal_name": "Kestrel Logistics Private Limited",
+        "trade_name": "Kestrel Logistics Private Limited",
+        "status": "ACTIVE"
+      },
+      "29UHPCL2138O1ZU": {
+        "legal_name": "Lumen Software Private Limited",
+        "trade_name": "Lumen Software Private Limited",
+        "status": "ACTIVE"
+      },
+      "24RMZCO3351C1Z7": {
+        "legal_name": "Orchid Packaging Private Limited",
+        "trade_name": "Orchid Packaging Private Limited",
+        "status": "ACTIVE"
+      },
+      "33NUECT6481H1ZA": {
+        "legal_name": "Tarang Engineering Private Limited",
+        "trade_name": "Tarang Engineering Private Limited",
+        "status": "ACTIVE"
+      },
+      "27XJHCZ0320Q1ZS": {
+        "legal_name": "Vayu Cooling Private Limited",
+        "trade_name": "Vayu Cooling Private Limited",
+        "status": "ACTIVE"
+      },
+      "27ACLCM7306X1Z9": {
+        "legal_name": "Meghdoot Cables Private Limited",
+        "trade_name": "Meghdoot Cables Private Limited",
+        "status": "ACTIVE"
+      },
+      "27PAGCS9099Z1Z7": {
+        "legal_name": "Sagar Chemicals Private Limited",
+        "trade_name": "Sagar Chemicals Private Limited",
+        "status": "ACTIVE"
+      },
+      "06NEFCN9155K1ZG": {
+        "legal_name": "Neelam Pharma Private Limited",
+        "trade_name": "Neelam Pharma Private Limited",
+        "status": "CANCELLED"
+      }
+    },
+    "pan": {
+      "JUFCK9755F": {
+        "name": "Kestrel Logistics Private Limited"
+      },
+      "UHPCL2138O": {
+        "name": "Lumen Software Private Limited"
+      },
+      "AWICB0456F": {
+        "name": "Banyan Foods Private Limited"
+      },
+      "RMZCO3351C": {
+        "name": "Orchid Packaging Private Limited"
+      },
+      "NUECT6481H": {
+        "name": "Tarang Engineering Private Limited"
+      },
+      "YHLCV0662A": {
+        "name": "Vayu Cooling Private Limited"
+      },
+      "ACLCM7306X": {
+        "name": "Meghdoot Cables Private Limited"
+      },
+      "PAGCS9099Z": {
+        "name": "Sagar Chemicals Private Limited"
+      },
+      "NEFCN9155K": {
+        "name": "Neelam Pharma Private Limited"
+      }
+    },
+    "bank": {
+      "853588682597": {
+        "holder_name": "Kestrel Logistics Private Limited"
+      },
+      "619201452374": {
+        "holder_name": "LUMEN SOFTWARE PRIVATE LIMITED"
+      },
+      "850007021610": {
+        "holder_name": "Banyan Foods Private Limited"
+      },
+      "693691329187": {
+        "holder_name": "Orchid Packaging Private Limited"
+      },
+      "873400482845": {
+        "holder_name": "Tarang Engineering Private Limited"
+      },
+      "997333628142": {
+        "holder_name": "Vayu Cooling Private Limited"
+      },
+      "876579883571": {
+        "holder_name": "Shree Ganesh Traders"
+      },
+      "835459780021": {
+        "holder_name": "Kestrel Freight Services Private Limited"
+      },
+      "179025458049": {
+        "holder_name": "Sagar Chemicals Private Limited"
+      },
+      "777329148518": {
+        "holder_name": "Neelam Pharma Private Limited"
+      }
+    },
+    "fault": {}
+  },
+  "US": {
+    "registry": {
+      "Colorado:20194359136": {
+        "name": "Prairie Wind Analytics LLC",
+        "status": "ACTIVE"
+      },
+      "Oregon:20192106771": {
+        "name": "Redwood Harbor Supply LLC",
+        "status": "ACTIVE"
+      },
+      "Texas:20193458258": {
+        "name": "Granite Peak Tools LLC",
+        "status": "ACTIVE"
+      },
+      "Ohio:20193594354": {
+        "name": "Cobalt Ridge Systems Inc.",
+        "status": "ACTIVE"
+      },
+      "Illinois:20199986964": {
+        "name": "Maple Street Bakery Supply LLC",
+        "status": "ACTIVE"
+      },
+      "Idaho:20191416292": {
+        "name": "Summit Crest Consulting LLC",
+        "status": "ACTIVE"
+      },
+      "Colorado:20190272948": {
+        "name": "Prairie Wind Data Services LLC",
+        "status": "ACTIVE"
+      },
+      "Florida:20191694536": {
+        "name": "Harbor Light Marine LLC",
+        "status": "ACTIVE"
+      },
+      "Pennsylvania:20193026183": {
+        "name": "Ironwood Fabrication Inc.",
+        "status": "ACTIVE"
+      },
+      "Arizona:20196590304": {
+        "name": "Falcon Crest Trading LLC",
+        "status": "ACTIVE"
+      }
+    },
+    "bank": {
+      "7253850710": {
+        "holder_name": "Prairie Wind Analytics LLC"
+      },
+      "2821738279": {
+        "holder_name": "REDWOOD HARBOR SUPPLY LLC"
+      },
+      "1811855109": {
+        "holder_name": "Granite Peak Tools LLC"
+      },
+      "4876724730": {
+        "holder_name": "Cobalt Ridge Systems Inc."
+      },
+      "7105397987": {
+        "holder_name": "Maple Street Bakery Supply LLC"
+      },
+      "3412296029": {
+        "holder_name": "Blue Heron Holdings LLC"
+      },
+      "8399919724": {
+        "holder_name": "Prairie Wind Data Services LLC"
+      },
+      "0773146805": {
+        "holder_name": "Harbor Light Marine LLC"
+      },
+      "7771156242": {
+        "holder_name": "Ironwood Fabrication Inc."
+      },
+      "2386738608": {
+        "holder_name": "Falcon Crest Trading LLC"
+      }
+    },
+    "tin_match": {
+      "120605522": {
+        "name": "Prairie Wind Analytics LLC",
+        "match": true
+      },
+      "457165132": {
+        "name": "Redwood Harbor Supply LLC",
+        "match": true
+      },
+      "837678959": {
+        "name": "Granite Peak Tools LLC",
+        "match": true
+      },
+      "45015135": {
+        "name": "Cobalt Ridge Systems Inc.",
+        "match": true
+      },
+      "317950040": {
+        "name": "Maple Street Bakery Supply LLC",
+        "match": true
+      },
+      "451784469": {
+        "name": "Summit Crest Consulting LLC",
+        "match": true
+      },
+      "125191443": {
+        "name": "Harbor Light Marine LLC",
+        "match": true
+      },
+      "452763813": {
+        "name": "Ironwood Fabrication Inc.",
+        "match": true
+      },
+      "529444429": {
+        "name": "Falcon Crest Trading LLC",
+        "match": true
+      }
+    },
+    "fault": {
+      "Florida:20191694536": "TIMEOUT"
+    }
+  },
+  "GB": {
+    "companies_house": {
+      "09735535": {
+        "name": "Thistle & Oak Design Limited",
+        "status": "active"
+      },
+      "00442597": {
+        "name": "Marsh and Fenn Limited",
+        "status": "active"
+      },
+      "98324643": {
+        "name": "Ashdown Packaging Limited",
+        "status": "active"
+      },
+      "09410925": {
+        "name": "Pennine Metals Limited",
+        "status": "active"
+      },
+      "75418738": {
+        "name": "Harrow Bridge Services Limited",
+        "status": "active"
+      },
+      "99173098": {
+        "name": "Calder Valley Energy Limited",
+        "status": "active"
+      },
+      "51980223": {
+        "name": "Quillon Instruments Limited",
+        "status": "active"
+      },
+      "15845797": {
+        "name": "Fernside Crafts Limited",
+        "status": "active"
+      }
+    },
+    "hmrc_vat": {
+      "653030277": {
+        "name": "Thistle & Oak Design Limited"
+      },
+      "636693448": {
+        "name": "Marsh and Fenn Limited"
+      },
+      "001578602": {
+        "name": "Ashdown Packaging Limited"
+      },
+      "439557708": {
+        "name": "Pennine Metals Limited"
+      },
+      "441277559": {
+        "name": "Harrow Bridge Services Limited"
+      },
+      "528463921": {
+        "name": "Thistle and Oak Studio Limited"
+      },
+      "308866922": {
+        "name": "Calder Valley Energy Limited"
+      },
+      "577762683": {
+        "name": "Quillon Instruments Limited"
+      }
+    },
+    "bank": {
+      "36434817": {
+        "holder_name": "Thistle & Oak Design Limited"
+      },
+      "52332157": {
+        "holder_name": "MARSH & FENN LTD"
+      },
+      "26055656": {
+        "holder_name": "Ashdown Packaging Limited"
+      },
+      "58369275": {
+        "holder_name": "Pennine Metals Limited"
+      },
+      "80986437": {
+        "holder_name": "Westgate Ventures Limited"
+      },
+      "36157788": {
+        "holder_name": "Thistle and Oak Studio Limited"
+      },
+      "65067420": {
+        "holder_name": "Calder Valley Energy Limited"
+      },
+      "45923030": {
+        "holder_name": "Quillon Instruments Limited"
+      },
+      "79618125": {
+        "holder_name": "Fernside Crafts Limited"
+      }
+    },
+    "fault": {
+      "308866922": "HTTP_503"
+    }
+  }
+}

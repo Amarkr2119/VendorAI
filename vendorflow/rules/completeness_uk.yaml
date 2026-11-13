@@ -1,0 +1,10 @@
+country: GB
+required_fields: [legal_name, entity_type, address, contact_email, company_number, bank_name, bank_holder_name, bank_account_number, sort_code]
+conditional_fields:
+  - field: vat_number
+    unless_declared: vat_not_registered
+required_documents:
+  - type: registration_certificate  # certificate of incorporation
+  - type: tax_certificate           # VAT registration certificate
+    unless_declared: vat_not_registered
+  - type: bank_proof

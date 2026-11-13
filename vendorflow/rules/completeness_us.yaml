@@ -1,0 +1,7 @@
+country: US
+required_fields: [legal_name, entity_type, address, contact_email, ein, state_of_registration, state_file_number, bank_name, bank_holder_name, bank_account_number, routing_number]
+conditional_fields: []
+required_documents:
+  - type: registration_certificate  # articles of organization / good standing
+  - type: tax_certificate           # Form W-9
+  - type: bank_proof

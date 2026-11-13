@@ -1,0 +1,1155 @@
+[
+  {
+    "ref": "IN-001",
+    "country": "IN",
+    "scenario": "Clean, complete application",
+    "fields": {
+      "legal_name": "Kestrel Logistics Private Limited",
+      "trade_name": "Kestrel Logistics Private Limited",
+      "entity_type": "Private Limited Company",
+      "address": "Plot 14, Phase II, Industrial Area, Pune 411019, Maharashtra",
+      "contact_email": "accounts@kestrel-logistics.example",
+      "pan": "JUFCK9755F",
+      "gstin": "27JUFCK9755F1ZR",
+      "cin": "U63297TN2015PTC223411",
+      "ifsc": "SYNB0470126",
+      "bank_name": "Synthetic National Bank",
+      "bank_holder_name": "Kestrel Logistics Private Limited",
+      "bank_account_number": "853588682597"
+    },
+    "declarations": {
+      "gst_not_registered": false
+    },
+    "documents": [
+      {
+        "type": "registration_form",
+        "path": "documents/IN-001/registration_form.pdf"
+      },
+      {
+        "type": "registration_certificate",
+        "path": "documents/IN-001/registration_certificate.pdf"
+      },
+      {
+        "type": "tax_certificate",
+        "path": "documents/IN-001/tax_certificate.pdf"
+      },
+      {
+        "type": "tax_id_proof",
+        "path": "documents/IN-001/tax_id_proof.pdf"
+      },
+      {
+        "type": "bank_proof",
+        "path": "documents/IN-001/bank_proof.pdf"
+      }
+    ]
+  },
+  {
+    "ref": "IN-002",
+    "country": "IN",
+    "scenario": "Clean; name variants (Pvt. Ltd. vs Private Limited, upper case bank holder); clean scanned bank proof",
+    "fields": {
+      "legal_name": "Lumen Software Pvt. Ltd.",
+      "trade_name": "Lumen Software Pvt. Ltd.",
+      "entity_type": "Private Limited Company",
+      "address": "27 Lake View Road, Indiranagar, Bengaluru 560038, Karnataka",
+      "contact_email": "accounts@lumen-software.example",
+      "pan": "UHPCL2138O",
+      "gstin": "29UHPCL2138O1ZU",
+      "cin": "U21309DL2012PTC950733",
+      "ifsc": "SYNB0762737",
+      "bank_name": "Synthetic National Bank",
+      "bank_holder_name": "LUMEN SOFTWARE PRIVATE LIMITED",
+      "bank_account_number": "619201452374"
+    },
+    "declarations": {
+      "gst_not_registered": false
+    },
+    "documents": [
+      {
+        "type": "registration_form",
+        "path": "documents/IN-002/registration_form.pdf"
+      },
+      {
+        "type": "registration_certificate",
+        "path": "documents/IN-002/registration_certificate.pdf"
+      },
+      {
+        "type": "tax_certificate",
+        "path": "documents/IN-002/tax_certificate.pdf"
+      },
+      {
+        "type": "tax_id_proof",
+        "path": "documents/IN-002/tax_id_proof.pdf"
+      },
+      {
+        "type": "bank_proof",
+        "path": "documents/IN-002/bank_proof.pdf"
+      }
+    ]
+  },
+  {
+    "ref": "IN-003",
+    "country": "IN",
+    "scenario": "Edge 1: GSTIN missing and no GST certificate",
+    "fields": {
+      "legal_name": "Banyan Foods Private Limited",
+      "trade_name": "Banyan Foods Private Limited",
+      "entity_type": "Private Limited Company",
+      "address": "B-9 Okhla Industrial Estate, New Delhi 110020",
+      "contact_email": "accounts@banyan-foods.example",
+      "pan": "AWICB0456F",
+      "cin": "U38929GJ2012PTC783235",
+      "ifsc": "SYNB0617101",
+      "bank_name": "Synthetic National Bank",
+      "bank_holder_name": "Banyan Foods Private Limited",
+      "bank_account_number": "850007021610"
+    },
+    "declarations": {
+      "gst_not_registered": false
+    },
+    "documents": [
+      {
+        "type": "registration_form",
+        "path": "documents/IN-003/registration_form.pdf"
+      },
+      {
+        "type": "registration_certificate",
+        "path": "documents/IN-003/registration_certificate.pdf"
+      },
+      {
+        "type": "tax_id_proof",
+        "path": "documents/IN-003/tax_id_proof.pdf"
+      },
+      {
+        "type": "bank_proof",
+        "path": "documents/IN-003/bank_proof.pdf"
+      }
+    ]
+  },
+  {
+    "ref": "IN-004",
+    "country": "IN",
+    "scenario": "Edge 1: GST certificate not uploaded (GSTIN given)",
+    "fields": {
+      "legal_name": "Orchid Packaging Private Limited",
+      "trade_name": "Orchid Packaging Private Limited",
+      "entity_type": "Private Limited Company",
+      "address": "12 Ring Road Crossing, Surat 395002, Gujarat",
+      "contact_email": "accounts@orchid-packaging.example",
+      "pan": "RMZCO3351C",
+      "gstin": "24RMZCO3351C1Z7",
+      "cin": "U93260KA2020PTC803085",
+      "ifsc": "SYNB0155796",
+      "bank_name": "Synthetic National Bank",
+      "bank_holder_name": "Orchid Packaging Private Limited",
+      "bank_account_number": "693691329187"
+    },
+    "declarations": {
+      "gst_not_registered": false
+    },
+    "documents": [
+      {
+        "type": "registration_form",
+        "path": "documents/IN-004/registration_form.pdf"
+      },
+      {
+        "type": "registration_certificate",
+        "path": "documents/IN-004/registration_certificate.pdf"
+      },
+      {
+        "type": "tax_id_proof",
+        "path": "documents/IN-004/tax_id_proof.pdf"
+      },
+      {
+        "type": "bank_proof",
+        "path": "documents/IN-004/bank_proof.pdf"
+      }
+    ]
+  },
+  {
+    "ref": "IN-005",
+    "country": "IN",
+    "scenario": "Edge 3: GSTIN fails check character (form and documents consistently show it)",
+    "fields": {
+      "legal_name": "Tarang Engineering Private Limited",
+      "trade_name": "Tarang Engineering Private Limited",
+      "entity_type": "Private Limited Company",
+      "address": "88 Anna Salai, Teynampet, Chennai 600018, Tamil Nadu",
+      "contact_email": "accounts@tarang-engineering.example",
+      "pan": "NUECT6481H",
+      "gstin": "33NUECT6481H1ZA",
+      "cin": "U43168GJ2020PTC169848",
+      "ifsc": "SYNB0710076",
+      "bank_name": "Synthetic National Bank",
+      "bank_holder_name": "Tarang Engineering Private Limited",
+      "bank_account_number": "873400482845"
+    },
+    "declarations": {
+      "gst_not_registered": false
+    },
+    "documents": [
+      {
+        "type": "registration_form",
+        "path": "documents/IN-005/registration_form.pdf"
+      },
+      {
+        "type": "registration_certificate",
+        "path": "documents/IN-005/registration_certificate.pdf"
+      },
+      {
+        "type": "tax_certificate",
+        "path": "documents/IN-005/tax_certificate.pdf"
+      },
+      {
+        "type": "tax_id_proof",
+        "path": "documents/IN-005/tax_id_proof.pdf"
+      },
+      {
+        "type": "bank_proof",
+        "path": "documents/IN-005/bank_proof.pdf"
+      }
+    ]
+  },
+  {
+    "ref": "IN-006",
+    "country": "IN",
+    "scenario": "Edge 3: GSTIN valid but its embedded PAN differs from the submitted PAN",
+    "fields": {
+      "legal_name": "Vayu Cooling Private Limited",
+      "trade_name": "Vayu Cooling Private Limited",
+      "entity_type": "Private Limited Company",
+      "address": "4th Floor, Harbor House, Fort, Mumbai 400001, Maharashtra",
+      "contact_email": "accounts@vayu-cooling.example",
+      "pan": "YHLCV0662A",
+      "gstin": "27XJHCZ0320Q1ZS",
+      "cin": "U66219KA2015PTC696641",
+      "ifsc": "SYNB0841076",
+      "bank_name": "Synthetic National Bank",
+      "bank_holder_name": "Vayu Cooling Private Limited",
+      "bank_account_number": "997333628142"
+    },
+    "declarations": {
+      "gst_not_registered": false
+    },
+    "documents": [
+      {
+        "type": "registration_form",
+        "path": "documents/IN-006/registration_form.pdf"
+      },
+      {
+        "type": "registration_certificate",
+        "path": "documents/IN-006/registration_certificate.pdf"
+      },
+      {
+        "type": "tax_certificate",
+        "path": "documents/IN-006/tax_certificate.pdf"
+      },
+      {
+        "type": "tax_id_proof",
+        "path": "documents/IN-006/tax_id_proof.pdf"
+      },
+      {
+        "type": "bank_proof",
+        "path": "documents/IN-006/bank_proof.pdf"
+      }
+    ]
+  },
+  {
+    "ref": "IN-007",
+    "country": "IN",
+    "scenario": "Edge 2: bank account holder is a different business",
+    "fields": {
+      "legal_name": "Meghdoot Cables Private Limited",
+      "trade_name": "Meghdoot Cables Private Limited",
+      "entity_type": "Private Limited Company",
+      "address": "31 Civil Lines, Nagpur 440001, Maharashtra",
+      "contact_email": "accounts@meghdoot-cables.example",
+      "pan": "ACLCM7306X",
+      "gstin": "27ACLCM7306X1Z9",
+      "cin": "U99626TN2015PTC922592",
+      "ifsc": "SYNB0501388",
+      "bank_name": "Synthetic National Bank",
+      "bank_holder_name": "Shree Ganesh Traders",
+      "bank_account_number": "876579883571"
+    },
+    "declarations": {
+      "gst_not_registered": false
+    },
+    "documents": [
+      {
+        "type": "registration_form",
+        "path": "documents/IN-007/registration_form.pdf"
+      },
+      {
+        "type": "registration_certificate",
+        "path": "documents/IN-007/registration_certificate.pdf"
+      },
+      {
+        "type": "tax_certificate",
+        "path": "documents/IN-007/tax_certificate.pdf"
+      },
+      {
+        "type": "tax_id_proof",
+        "path": "documents/IN-007/tax_id_proof.pdf"
+      },
+      {
+        "type": "bank_proof",
+        "path": "documents/IN-007/bank_proof.pdf"
+      }
+    ]
+  },
+  {
+    "ref": "IN-008",
+    "country": "IN",
+    "scenario": "Edge 4: same GSTIN and PAN as IN-001 under a different company name",
+    "fields": {
+      "legal_name": "Kestrel Freight Services Private Limited",
+      "trade_name": "Kestrel Freight Services Private Limited",
+      "entity_type": "Private Limited Company",
+      "address": "Unit 6, Tech Park Road, Hyderabad 500081, Telangana",
+      "contact_email": "accounts@kestrel-freight.example",
+      "pan": "JUFCK9755F",
+      "gstin": "27JUFCK9755F1ZR",
+      "cin": "U26928GJ2018PTC722456",
+      "ifsc": "SYNB0743664",
+      "bank_name": "Synthetic National Bank",
+      "bank_holder_name": "Kestrel Freight Services Private Limited",
+      "bank_account_number": "835459780021"
+    },
+    "declarations": {
+      "gst_not_registered": false
+    },
+    "documents": [
+      {
+        "type": "registration_form",
+        "path": "documents/IN-008/registration_form.pdf"
+      },
+      {
+        "type": "registration_certificate",
+        "path": "documents/IN-008/registration_certificate.pdf"
+      },
+      {
+        "type": "tax_certificate",
+        "path": "documents/IN-008/tax_certificate.pdf"
+      },
+      {
+        "type": "tax_id_proof",
+        "path": "documents/IN-008/tax_id_proof.pdf"
+      },
+      {
+        "type": "bank_proof",
+        "path": "documents/IN-008/bank_proof.pdf"
+      }
+    ]
+  },
+  {
+    "ref": "IN-009",
+    "country": "IN",
+    "scenario": "Edge 6: poor-quality scans of the GST certificate and PAN proof",
+    "fields": {
+      "legal_name": "Sagar Chemicals Private Limited",
+      "trade_name": "Sagar Chemicals Private Limited",
+      "entity_type": "Private Limited Company",
+      "address": "101 Park Street, Kolkata 700016, West Bengal",
+      "contact_email": "accounts@sagar-chemicals.example",
+      "pan": "PAGCS9099Z",
+      "gstin": "27PAGCS9099Z1Z7",
+      "cin": "U56210MH2020PTC535607",
+      "ifsc": "SYNB0199655",
+      "bank_name": "Synthetic National Bank",
+      "bank_holder_name": "Sagar Chemicals Private Limited",
+      "bank_account_number": "179025458049"
+    },
+    "declarations": {
+      "gst_not_registered": false
+    },
+    "documents": [
+      {
+        "type": "registration_form",
+        "path": "documents/IN-009/registration_form.pdf"
+      },
+      {
+        "type": "registration_certificate",
+        "path": "documents/IN-009/registration_certificate.pdf"
+      },
+      {
+        "type": "tax_certificate",
+        "path": "documents/IN-009/tax_certificate.pdf"
+      },
+      {
+        "type": "tax_id_proof",
+        "path": "documents/IN-009/tax_id_proof.png"
+      },
+      {
+        "type": "bank_proof",
+        "path": "documents/IN-009/bank_proof.pdf"
+      }
+    ]
+  },
+  {
+    "ref": "IN-010",
+    "country": "IN",
+    "scenario": "Simulated provider reports the GSTIN as CANCELLED (must NOT cause Rejected)",
+    "fields": {
+      "legal_name": "Neelam Pharma Private Limited",
+      "trade_name": "Neelam Pharma Private Limited",
+      "entity_type": "Private Limited Company",
+      "address": "22 Sector 18, Gurugram 122015, Haryana",
+      "contact_email": "accounts@neelam-pharma.example",
+      "pan": "NEFCN9155K",
+      "gstin": "06NEFCN9155K1ZG",
+      "cin": "U21119MH2015PTC581675",
+      "ifsc": "SYNB0329437",
+      "bank_name": "Synthetic National Bank",
+      "bank_holder_name": "Neelam Pharma Private Limited",
+      "bank_account_number": "777329148518"
+    },
+    "declarations": {
+      "gst_not_registered": false
+    },
+    "documents": [
+      {
+        "type": "registration_form",
+        "path": "documents/IN-010/registration_form.pdf"
+      },
+      {
+        "type": "registration_certificate",
+        "path": "documents/IN-010/registration_certificate.pdf"
+      },
+      {
+        "type": "tax_certificate",
+        "path": "documents/IN-010/tax_certificate.pdf"
+      },
+      {
+        "type": "tax_id_proof",
+        "path": "documents/IN-010/tax_id_proof.pdf"
+      },
+      {
+        "type": "bank_proof",
+        "path": "documents/IN-010/bank_proof.pdf"
+      }
+    ]
+  },
+  {
+    "ref": "US-001",
+    "country": "US",
+    "scenario": "Clean, complete application",
+    "fields": {
+      "legal_name": "Prairie Wind Analytics LLC",
+      "trade_name": "Prairie Wind Analytics LLC",
+      "entity_type": "LLC",
+      "address": "1200 Larkspur Avenue, Denver, CO 80202",
+      "contact_email": "accounts@prairie-wind.example",
+      "ein": "12-0605522",
+      "state_file_number": "20194359136",
+      "routing_number": "964709133",
+      "bank_name": "Demo Heritage Bank",
+      "bank_holder_name": "Prairie Wind Analytics LLC",
+      "bank_account_number": "7253850710",
+      "state_of_registration": "Colorado"
+    },
+    "declarations": {},
+    "documents": [
+      {
+        "type": "registration_form",
+        "path": "documents/US-001/registration_form.pdf"
+      },
+      {
+        "type": "registration_certificate",
+        "path": "documents/US-001/registration_certificate.pdf"
+      },
+      {
+        "type": "tax_certificate",
+        "path": "documents/US-001/tax_certificate.pdf"
+      },
+      {
+        "type": "bank_proof",
+        "path": "documents/US-001/bank_proof.pdf"
+      }
+    ]
+  },
+  {
+    "ref": "US-002",
+    "country": "US",
+    "scenario": "Clean; LLC vs Limited Liability Company; registration certificate as clean PNG scan",
+    "fields": {
+      "legal_name": "Redwood Harbor Supply Limited Liability Company",
+      "trade_name": "Redwood Harbor Supply Limited Liability Company",
+      "entity_type": "LLC",
+      "address": "845 Harbor Point Road, Portland, OR 97201",
+      "contact_email": "accounts@redwood-harbor.example",
+      "ein": "45-7165132",
+      "state_file_number": "20192106771",
+      "routing_number": "970187574",
+      "bank_name": "Demo Heritage Bank",
+      "bank_holder_name": "REDWOOD HARBOR SUPPLY LLC",
+      "bank_account_number": "2821738279",
+      "state_of_registration": "Oregon"
+    },
+    "declarations": {},
+    "documents": [
+      {
+        "type": "registration_form",
+        "path": "documents/US-002/registration_form.pdf"
+      },
+      {
+        "type": "registration_certificate",
+        "path": "documents/US-002/registration_certificate.png"
+      },
+      {
+        "type": "tax_certificate",
+        "path": "documents/US-002/tax_certificate.pdf"
+      },
+      {
+        "type": "bank_proof",
+        "path": "documents/US-002/bank_proof.pdf"
+      }
+    ]
+  },
+  {
+    "ref": "US-003",
+    "country": "US",
+    "scenario": "Edge 1: wrong document attached in the W-9 slot (it is a bank letter)",
+    "fields": {
+      "legal_name": "Granite Peak Tools LLC",
+      "trade_name": "Granite Peak Tools LLC",
+      "entity_type": "LLC",
+      "address": "300 Quarry Street, Austin, TX 78701",
+      "contact_email": "accounts@granite-peak.example",
+      "ein": "83-7678959",
+      "state_file_number": "20193458258",
+      "routing_number": "937228874",
+      "bank_name": "Demo Heritage Bank",
+      "bank_holder_name": "Granite Peak Tools LLC",
+      "bank_account_number": "1811855109",
+      "state_of_registration": "Texas"
+    },
+    "declarations": {},
+    "documents": [
+      {
+        "type": "registration_form",
+        "path": "documents/US-003/registration_form.pdf"
+      },
+      {
+        "type": "registration_certificate",
+        "path": "documents/US-003/registration_certificate.pdf"
+      },
+      {
+        "type": "tax_certificate",
+        "path": "documents/US-003/tax_certificate.pdf"
+      },
+      {
+        "type": "bank_proof",
+        "path": "documents/US-003/bank_proof.pdf"
+      }
+    ]
+  },
+  {
+    "ref": "US-004",
+    "country": "US",
+    "scenario": "Edge 3: EIN has 8 digits instead of 9",
+    "fields": {
+      "legal_name": "Cobalt Ridge Systems Inc.",
+      "trade_name": "Cobalt Ridge Systems Inc.",
+      "entity_type": "C Corporation",
+      "address": "77 Elm Grove Lane, Columbus, OH 43215",
+      "contact_email": "accounts@cobalt-ridge.example",
+      "ein": "45-015135",
+      "state_file_number": "20193594354",
+      "routing_number": "944293216",
+      "bank_name": "Demo Heritage Bank",
+      "bank_holder_name": "Cobalt Ridge Systems Inc.",
+      "bank_account_number": "4876724730",
+      "state_of_registration": "Ohio"
+    },
+    "declarations": {},
+    "documents": [
+      {
+        "type": "registration_form",
+        "path": "documents/US-004/registration_form.pdf"
+      },
+      {
+        "type": "registration_certificate",
+        "path": "documents/US-004/registration_certificate.pdf"
+      },
+      {
+        "type": "tax_certificate",
+        "path": "documents/US-004/tax_certificate.pdf"
+      },
+      {
+        "type": "bank_proof",
+        "path": "documents/US-004/bank_proof.pdf"
+      }
+    ]
+  },
+  {
+    "ref": "US-005",
+    "country": "US",
+    "scenario": "Edge 3: ABA routing number fails its checksum",
+    "fields": {
+      "legal_name": "Maple Street Bakery Supply LLC",
+      "trade_name": "Maple Street Bakery Supply LLC",
+      "entity_type": "LLC",
+      "address": "19 Lakeshore Drive, Chicago, IL 60601",
+      "contact_email": "accounts@maple-street.example",
+      "ein": "31-7950040",
+      "state_file_number": "20199986964",
+      "routing_number": "912478901",
+      "bank_name": "Demo Heritage Bank",
+      "bank_holder_name": "Maple Street Bakery Supply LLC",
+      "bank_account_number": "7105397987",
+      "state_of_registration": "Illinois"
+    },
+    "declarations": {},
+    "documents": [
+      {
+        "type": "registration_form",
+        "path": "documents/US-005/registration_form.pdf"
+      },
+      {
+        "type": "registration_certificate",
+        "path": "documents/US-005/registration_certificate.pdf"
+      },
+      {
+        "type": "tax_certificate",
+        "path": "documents/US-005/tax_certificate.pdf"
+      },
+      {
+        "type": "bank_proof",
+        "path": "documents/US-005/bank_proof.pdf"
+      }
+    ]
+  },
+  {
+    "ref": "US-006",
+    "country": "US",
+    "scenario": "Edge 2: bank account holder is a different company",
+    "fields": {
+      "legal_name": "Summit Crest Consulting LLC",
+      "trade_name": "Summit Crest Consulting LLC",
+      "entity_type": "LLC",
+      "address": "510 Pine Ridge Court, Boise, ID 83702",
+      "contact_email": "accounts@summit-crest.example",
+      "ein": "45-1784469",
+      "state_file_number": "20191416292",
+      "routing_number": "937521694",
+      "bank_name": "Demo Heritage Bank",
+      "bank_holder_name": "Blue Heron Holdings LLC",
+      "bank_account_number": "3412296029",
+      "state_of_registration": "Idaho"
+    },
+    "declarations": {},
+    "documents": [
+      {
+        "type": "registration_form",
+        "path": "documents/US-006/registration_form.pdf"
+      },
+      {
+        "type": "registration_certificate",
+        "path": "documents/US-006/registration_certificate.pdf"
+      },
+      {
+        "type": "tax_certificate",
+        "path": "documents/US-006/tax_certificate.pdf"
+      },
+      {
+        "type": "bank_proof",
+        "path": "documents/US-006/bank_proof.pdf"
+      }
+    ]
+  },
+  {
+    "ref": "US-007",
+    "country": "US",
+    "scenario": "Edge 4: same EIN as US-001",
+    "fields": {
+      "legal_name": "Prairie Wind Data Services LLC",
+      "trade_name": "Prairie Wind Data Services LLC",
+      "entity_type": "LLC",
+      "address": "62 Mill Race Road, Raleigh, NC 27601",
+      "contact_email": "accounts@prairie-wind.example",
+      "ein": "12-0605522",
+      "state_file_number": "20190272948",
+      "routing_number": "935865336",
+      "bank_name": "Demo Heritage Bank",
+      "bank_holder_name": "Prairie Wind Data Services LLC",
+      "bank_account_number": "8399919724",
+      "state_of_registration": "Colorado"
+    },
+    "declarations": {},
+    "documents": [
+      {
+        "type": "registration_form",
+        "path": "documents/US-007/registration_form.pdf"
+      },
+      {
+        "type": "registration_certificate",
+        "path": "documents/US-007/registration_certificate.pdf"
+      },
+      {
+        "type": "tax_certificate",
+        "path": "documents/US-007/tax_certificate.pdf"
+      },
+      {
+        "type": "bank_proof",
+        "path": "documents/US-007/bank_proof.pdf"
+      }
+    ]
+  },
+  {
+    "ref": "US-008",
+    "country": "US",
+    "scenario": "Edge 5: simulated business-registry lookup times out",
+    "fields": {
+      "legal_name": "Harbor Light Marine LLC",
+      "trade_name": "Harbor Light Marine LLC",
+      "entity_type": "LLC",
+      "address": "930 Bayview Boulevard, Tampa, FL 33602",
+      "contact_email": "accounts@harbor-light.example",
+      "ein": "12-5191443",
+      "state_file_number": "20191694536",
+      "routing_number": "969489937",
+      "bank_name": "Demo Heritage Bank",
+      "bank_holder_name": "Harbor Light Marine LLC",
+      "bank_account_number": "0773146805",
+      "state_of_registration": "Florida"
+    },
+    "declarations": {},
+    "documents": [
+      {
+        "type": "registration_form",
+        "path": "documents/US-008/registration_form.pdf"
+      },
+      {
+        "type": "registration_certificate",
+        "path": "documents/US-008/registration_certificate.pdf"
+      },
+      {
+        "type": "tax_certificate",
+        "path": "documents/US-008/tax_certificate.pdf"
+      },
+      {
+        "type": "bank_proof",
+        "path": "documents/US-008/bank_proof.pdf"
+      }
+    ]
+  },
+  {
+    "ref": "US-009",
+    "country": "US",
+    "scenario": "Edge 6: poor-quality scan of the W-9",
+    "fields": {
+      "legal_name": "Ironwood Fabrication Inc.",
+      "trade_name": "Ironwood Fabrication Inc.",
+      "entity_type": "C Corporation",
+      "address": "4 Foundry Way, Pittsburgh, PA 15222",
+      "contact_email": "accounts@ironwood-fabrication.example",
+      "ein": "45-2763813",
+      "state_file_number": "20193026183",
+      "routing_number": "999119976",
+      "bank_name": "Demo Heritage Bank",
+      "bank_holder_name": "Ironwood Fabrication Inc.",
+      "bank_account_number": "7771156242",
+      "state_of_registration": "Pennsylvania"
+    },
+    "declarations": {},
+    "documents": [
+      {
+        "type": "registration_form",
+        "path": "documents/US-009/registration_form.pdf"
+      },
+      {
+        "type": "registration_certificate",
+        "path": "documents/US-009/registration_certificate.pdf"
+      },
+      {
+        "type": "tax_certificate",
+        "path": "documents/US-009/tax_certificate.pdf"
+      },
+      {
+        "type": "bank_proof",
+        "path": "documents/US-009/bank_proof.pdf"
+      }
+    ]
+  },
+  {
+    "ref": "US-010",
+    "country": "US",
+    "scenario": "Documented rejection scenario: EIN is on a synthetic internal blocklist",
+    "fields": {
+      "legal_name": "Falcon Crest Trading LLC",
+      "trade_name": "Falcon Crest Trading LLC",
+      "entity_type": "LLC",
+      "address": "2101 Mesa Verde Drive, Phoenix, AZ 85004",
+      "contact_email": "accounts@falcon-crest.example",
+      "ein": "52-9444429",
+      "state_file_number": "20196590304",
+      "routing_number": "963517151",
+      "bank_name": "Demo Heritage Bank",
+      "bank_holder_name": "Falcon Crest Trading LLC",
+      "bank_account_number": "2386738608",
+      "state_of_registration": "Arizona"
+    },
+    "declarations": {},
+    "documents": [
+      {
+        "type": "registration_form",
+        "path": "documents/US-010/registration_form.pdf"
+      },
+      {
+        "type": "registration_certificate",
+        "path": "documents/US-010/registration_certificate.pdf"
+      },
+      {
+        "type": "tax_certificate",
+        "path": "documents/US-010/tax_certificate.pdf"
+      },
+      {
+        "type": "bank_proof",
+        "path": "documents/US-010/bank_proof.pdf"
+      }
+    ]
+  },
+  {
+    "ref": "UK-001",
+    "country": "GB",
+    "scenario": "Clean, complete application",
+    "fields": {
+      "legal_name": "Thistle & Oak Design Limited",
+      "trade_name": "Thistle & Oak Design Limited",
+      "entity_type": "Private Limited Company",
+      "address": "14 Millbrook Lane, Leeds LS1 4AB",
+      "contact_email": "accounts@thistle-oak.example",
+      "company_number": "09735535",
+      "vat_number": "GB653030277",
+      "sort_code": "98-04-83",
+      "bank_name": "Demo Britannia Bank",
+      "bank_holder_name": "Thistle & Oak Design Limited",
+      "bank_account_number": "36434817"
+    },
+    "declarations": {
+      "vat_not_registered": false
+    },
+    "documents": [
+      {
+        "type": "registration_form",
+        "path": "documents/UK-001/registration_form.pdf"
+      },
+      {
+        "type": "registration_certificate",
+        "path": "documents/UK-001/registration_certificate.pdf"
+      },
+      {
+        "type": "tax_certificate",
+        "path": "documents/UK-001/tax_certificate.pdf"
+      },
+      {
+        "type": "bank_proof",
+        "path": "documents/UK-001/bank_proof.pdf"
+      }
+    ]
+  },
+  {
+    "ref": "UK-002",
+    "country": "GB",
+    "scenario": "Clean; '&' vs 'and', Ltd vs Limited; scanned bank proof (clean scan)",
+    "fields": {
+      "legal_name": "Marsh & Fenn Ltd",
+      "trade_name": "Marsh & Fenn Ltd",
+      "entity_type": "Private Limited Company",
+      "address": "6 Marsh Lane, Cambridge CB2 1AB",
+      "contact_email": "accounts@marsh-fenn.example",
+      "company_number": "00442597",
+      "vat_number": "GB636693448",
+      "sort_code": "98-82-84",
+      "bank_name": "Demo Britannia Bank",
+      "bank_holder_name": "MARSH & FENN LTD",
+      "bank_account_number": "52332157"
+    },
+    "declarations": {
+      "vat_not_registered": false
+    },
+    "documents": [
+      {
+        "type": "registration_form",
+        "path": "documents/UK-002/registration_form.pdf"
+      },
+      {
+        "type": "registration_certificate",
+        "path": "documents/UK-002/registration_certificate.pdf"
+      },
+      {
+        "type": "tax_certificate",
+        "path": "documents/UK-002/tax_certificate.pdf"
+      },
+      {
+        "type": "bank_proof",
+        "path": "documents/UK-002/bank_proof.pdf"
+      }
+    ]
+  },
+  {
+    "ref": "UK-003",
+    "country": "GB",
+    "scenario": "Edge 1: certificate of incorporation missing",
+    "fields": {
+      "legal_name": "Ashdown Packaging Limited",
+      "trade_name": "Ashdown Packaging Limited",
+      "entity_type": "Private Limited Company",
+      "address": "21 Ashdown Close, Brighton BN1 4GH",
+      "contact_email": "accounts@ashdown-packaging.example",
+      "company_number": "98324643",
+      "vat_number": "GB001578602",
+      "sort_code": "98-96-04",
+      "bank_name": "Demo Britannia Bank",
+      "bank_holder_name": "Ashdown Packaging Limited",
+      "bank_account_number": "26055656"
+    },
+    "declarations": {
+      "vat_not_registered": false
+    },
+    "documents": [
+      {
+        "type": "registration_form",
+        "path": "documents/UK-003/registration_form.pdf"
+      },
+      {
+        "type": "tax_certificate",
+        "path": "documents/UK-003/tax_certificate.pdf"
+      },
+      {
+        "type": "bank_proof",
+        "path": "documents/UK-003/bank_proof.pdf"
+      }
+    ]
+  },
+  {
+    "ref": "UK-004",
+    "country": "GB",
+    "scenario": "Edge 3: VAT number fails the mod-97 check",
+    "fields": {
+      "legal_name": "Pennine Metals Limited",
+      "trade_name": "Pennine Metals Limited",
+      "entity_type": "Private Limited Company",
+      "address": "9 Pennine Way, Huddersfield HD1 2QN",
+      "contact_email": "accounts@pennine-metals.example",
+      "company_number": "09410925",
+      "vat_number": "GB439557708",
+      "sort_code": "98-59-67",
+      "bank_name": "Demo Britannia Bank",
+      "bank_holder_name": "Pennine Metals Limited",
+      "bank_account_number": "58369275"
+    },
+    "declarations": {
+      "vat_not_registered": false
+    },
+    "documents": [
+      {
+        "type": "registration_form",
+        "path": "documents/UK-004/registration_form.pdf"
+      },
+      {
+        "type": "registration_certificate",
+        "path": "documents/UK-004/registration_certificate.pdf"
+      },
+      {
+        "type": "tax_certificate",
+        "path": "documents/UK-004/tax_certificate.pdf"
+      },
+      {
+        "type": "bank_proof",
+        "path": "documents/UK-004/bank_proof.pdf"
+      }
+    ]
+  },
+  {
+    "ref": "UK-005",
+    "country": "GB",
+    "scenario": "Edge 2: bank account holder is a different company",
+    "fields": {
+      "legal_name": "Harrow Bridge Services Limited",
+      "trade_name": "Harrow Bridge Services Limited",
+      "entity_type": "Private Limited Company",
+      "address": "3 Harrow Bridge Road, Sheffield S1 2AA",
+      "contact_email": "accounts@harrow-bridge.example",
+      "company_number": "75418738",
+      "vat_number": "GB441277559",
+      "sort_code": "98-48-25",
+      "bank_name": "Demo Britannia Bank",
+      "bank_holder_name": "Westgate Ventures Limited",
+      "bank_account_number": "80986437"
+    },
+    "declarations": {
+      "vat_not_registered": false
+    },
+    "documents": [
+      {
+        "type": "registration_form",
+        "path": "documents/UK-005/registration_form.pdf"
+      },
+      {
+        "type": "registration_certificate",
+        "path": "documents/UK-005/registration_certificate.pdf"
+      },
+      {
+        "type": "tax_certificate",
+        "path": "documents/UK-005/tax_certificate.pdf"
+      },
+      {
+        "type": "bank_proof",
+        "path": "documents/UK-005/bank_proof.pdf"
+      }
+    ]
+  },
+  {
+    "ref": "UK-006",
+    "country": "GB",
+    "scenario": "Edge 4: same Companies House number as UK-001",
+    "fields": {
+      "legal_name": "Thistle and Oak Studio Limited",
+      "trade_name": "Thistle and Oak Studio Limited",
+      "entity_type": "Private Limited Company",
+      "address": "52 Canal Street, Manchester M1 3HE",
+      "contact_email": "accounts@thistle-oak.example",
+      "company_number": "09735535",
+      "vat_number": "GB528463921",
+      "sort_code": "98-84-31",
+      "bank_name": "Demo Britannia Bank",
+      "bank_holder_name": "Thistle and Oak Studio Limited",
+      "bank_account_number": "36157788"
+    },
+    "declarations": {
+      "vat_not_registered": false
+    },
+    "documents": [
+      {
+        "type": "registration_form",
+        "path": "documents/UK-006/registration_form.pdf"
+      },
+      {
+        "type": "registration_certificate",
+        "path": "documents/UK-006/registration_certificate.pdf"
+      },
+      {
+        "type": "tax_certificate",
+        "path": "documents/UK-006/tax_certificate.pdf"
+      },
+      {
+        "type": "bank_proof",
+        "path": "documents/UK-006/bank_proof.pdf"
+      }
+    ]
+  },
+  {
+    "ref": "UK-007",
+    "country": "GB",
+    "scenario": "Edge 5: simulated HMRC VAT lookup returns HTTP 503 persistently",
+    "fields": {
+      "legal_name": "Calder Valley Energy Limited",
+      "trade_name": "Calder Valley Energy Limited",
+      "entity_type": "Private Limited Company",
+      "address": "40 Calder Mill, Halifax HX1 1AA",
+      "contact_email": "accounts@calder-valley.example",
+      "company_number": "99173098",
+      "vat_number": "GB308866922",
+      "sort_code": "98-07-30",
+      "bank_name": "Demo Britannia Bank",
+      "bank_holder_name": "Calder Valley Energy Limited",
+      "bank_account_number": "65067420"
+    },
+    "declarations": {
+      "vat_not_registered": false
+    },
+    "documents": [
+      {
+        "type": "registration_form",
+        "path": "documents/UK-007/registration_form.pdf"
+      },
+      {
+        "type": "registration_certificate",
+        "path": "documents/UK-007/registration_certificate.pdf"
+      },
+      {
+        "type": "tax_certificate",
+        "path": "documents/UK-007/tax_certificate.pdf"
+      },
+      {
+        "type": "bank_proof",
+        "path": "documents/UK-007/bank_proof.pdf"
+      }
+    ]
+  },
+  {
+    "ref": "UK-008",
+    "country": "GB",
+    "scenario": "Edge 6: poor-quality scan of the VAT certificate",
+    "fields": {
+      "legal_name": "Quillon Instruments Limited",
+      "trade_name": "Quillon Instruments Limited",
+      "entity_type": "Private Limited Company",
+      "address": "11 Quillon Yard, Oxford OX1 2JD",
+      "contact_email": "accounts@quillon-instruments.example",
+      "company_number": "51980223",
+      "vat_number": "GB577762683",
+      "sort_code": "98-47-27",
+      "bank_name": "Demo Britannia Bank",
+      "bank_holder_name": "Quillon Instruments Limited",
+      "bank_account_number": "45923030"
+    },
+    "declarations": {
+      "vat_not_registered": false
+    },
+    "documents": [
+      {
+        "type": "registration_form",
+        "path": "documents/UK-008/registration_form.pdf"
+      },
+      {
+        "type": "registration_certificate",
+        "path": "documents/UK-008/registration_certificate.pdf"
+      },
+      {
+        "type": "tax_certificate",
+        "path": "documents/UK-008/tax_certificate.pdf"
+      },
+      {
+        "type": "bank_proof",
+        "path": "documents/UK-008/bank_proof.pdf"
+      }
+    ]
+  },
+  {
+    "ref": "UK-009",
+    "country": "GB",
+    "scenario": "Vendor declares it is not VAT-registered (no VAT number or certificate)",
+    "fields": {
+      "legal_name": "Fernside Crafts Limited",
+      "trade_name": "Fernside Crafts Limited",
+      "entity_type": "Private Limited Company",
+      "address": "18 Fernside Road, Norwich NR1 3DD",
+      "contact_email": "accounts@fernside-crafts.example",
+      "company_number": "15845797",
+      "sort_code": "98-45-43",
+      "bank_name": "Demo Britannia Bank",
+      "bank_holder_name": "Fernside Crafts Limited",
+      "bank_account_number": "79618125"
+    },
+    "declarations": {
+      "vat_not_registered": true
+    },
+    "documents": [
+      {
+        "type": "registration_form",
+        "path": "documents/UK-009/registration_form.pdf"
+      },
+      {
+        "type": "registration_certificate",
+        "path": "documents/UK-009/registration_certificate.pdf"
+      },
+      {
+        "type": "bank_proof",
+        "path": "documents/UK-009/bank_proof.pdf"
+      }
+    ]
+  }
+]

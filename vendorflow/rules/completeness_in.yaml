@@ -1,0 +1,11 @@
+country: IN
+required_fields: [legal_name, entity_type, address, contact_email, pan, cin, bank_name, bank_holder_name, bank_account_number, ifsc]
+conditional_fields:
+  - field: gstin
+    unless_declared: gst_not_registered
+required_documents:
+  - type: registration_certificate
+  - type: tax_certificate          # GST registration certificate
+    unless_declared: gst_not_registered
+  - type: tax_id_proof             # PAN proof
+  - type: bank_proof

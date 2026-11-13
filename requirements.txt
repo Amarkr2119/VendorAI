@@ -1,0 +1,15 @@
+# Core runtime
+streamlit>=1.40
+pymupdf>=1.24            # primary PDF backend (text layer + page rendering)
+pypdfium2>=4.30          # fallback PDF backend, used automatically if PyMuPDF is missing
+pillow>=10.0
+pytesseract>=0.3.10      # OCR wrapper; needs the Tesseract binary (see README)
+requests>=2.31           # Gemini and Groq REST calls, Companies House/HMRC later
+python-dotenv>=1.0
+pyyaml>=6.0
+pandas>=2.0
+# Dataset generation
+reportlab>=4.0
+# Tests
+pytest>=8.0
+# Optional OCR fallback (pure pip):  pip install rapidocr-onnxruntime

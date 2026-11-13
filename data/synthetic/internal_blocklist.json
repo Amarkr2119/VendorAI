@@ -1,0 +1,18 @@
+{
+  "_comment": "FICTIONAL internal blocklist for the documented rejection scenario. Not real data.",
+  "conditions": {
+    "DQ-01": "Previously terminated for submitting falsified bank letters (fictional internal record)"
+  },
+  "entries": [
+    {
+      "id_type": "EIN",
+      "value_norm": "529444429",
+      "condition_code": "DQ-01",
+      "record_ref": "SYN-BL-0001",
+      "added": "2026-02-14",
+      "verified_at": "2026-02-14T09:00:00Z",
+      "source": "FICTIONAL confirmed internal termination record",
+      "confirmed": true
+    }
+  ]
+}
